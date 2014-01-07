@@ -11,5 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require semantic
 //= require jquery_ujs
 //= require_tree .

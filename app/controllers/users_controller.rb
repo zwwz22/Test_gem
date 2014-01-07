@@ -7,10 +7,13 @@ class UsersController < ApplicationController
     a = YAML.load(File.read("#{Rails.root}/config/test.yml"))
     p a
     @xml = Nokogiri::XML::Builder.new do
-      xml {
-        data '222'
-        time Time.now.to_i
-      }
+      xml do
+        ToUserName   { cdata('123') }
+        FromUserName { cdata('456') }
+        CreateTime   Time.now.to_i
+        MsgType      { cdata('text') }
+        Content      { cdata('789') }
+      end
     end
     #respond_to do |format|
     #  format.html

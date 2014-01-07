@@ -31,6 +31,8 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
+#UI
+#gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 # Deploy with Capistrano
 gem 'mina'
 
