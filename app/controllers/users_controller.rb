@@ -15,14 +15,13 @@ class UsersController < ApplicationController
         Content      { cdata('789') }
       end
     end
-    #respond_to do |format|
-    #  format.html
-    #  format.xls {
-    #    send_data @users.to_xls(:columns => [:name],:headers => ['姓名']), :filename => 'users22.xls'
-    #  }
-    #  format.xml {render :xml => @xml.to_xml}
-    #end
-    render :xml => @xml.to_xml
+    respond_to do |format|
+      format.html
+      format.xls {
+        send_data @users.to_xls(:columns => [:name],:headers => ['姓名']), :filename => 'users22.xls'
+      }
+      format.xml {render :xml => @xml.to_xml}
+    end
   end
 
   def new
