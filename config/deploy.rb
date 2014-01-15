@@ -16,11 +16,12 @@ set :domain, 'zhangw@localhost'
 #set :deploy_to, '/alidata1/xiyou/apps/toyouface'
 set :deploy_to, '/tmp/zhangw'
 #set :app_path,   "#{deploy_to}/#{current_path}"
-set :repository, 'git@github.com:zwwz22/toyouface.git'
+set :repository, 'git@github.com:zwwz22/Test_gem.git'
 set :branch, 'master'
 #set :rvm_path, '/usr/local/rvm/scripts/rvm'
 set :rvm_path, '/home/zhangw/.rvm/scripts/rvm'
 #set :keep_releases, 2
+set :term_mode, :system
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
@@ -40,7 +41,7 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   #invoke :'rvm:use[ruby-1.9.3-p448@default]'
-  invoke :'rvm:use[ruby-2.0.0-p195@default]'
+  invoke :'rvm:use[ruby 2.1.0p0@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.

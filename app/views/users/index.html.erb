@@ -14,10 +14,18 @@
   </tr>
   <% end %>
 </table>
-<%= collection_select(:user,:a,User.all,:id,:name)%>
+<%= collection_select(:user,:a,User.all,:id,:name,{},{:class => '.ui.selection.dropdown'})%>
+<div class="ui selection dropdown">
+  <input type="hidden" name="user[a]">
+  <div class="text">姓名</div>
+  <i class="dropdown icon"></i>
+  <div class="menu">
+    <% User.all.each do |u| %>
+    <div class="item" data-value="<%= u.id %>"><%= u.name%></div>
+    <% end %>
+  </div>
+</div>
 <%= select('user','b',User.all.collect{|u|[u.name,u.id]}) %>
-<%= select('user','c',[[1,3],[4,6]]) %>
-<%= collection_select(:user,:id,User.all,:id,:name) %>
 
 <div class="red button" style="margin-left: 300px">2222</div>
 
