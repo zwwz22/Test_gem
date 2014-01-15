@@ -2,7 +2,7 @@ require 'openssl'
 class UsersController < ApplicationController
 
   def index
-    @users = User.order_desc.where(:name.matches('admi'))
+    @users = User.order_desc.all
 
     a = YAML.load(File.read("#{Rails.root}/config/test.yml"))
     p a

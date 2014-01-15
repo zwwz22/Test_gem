@@ -14,7 +14,7 @@ require 'mina/rvm'
 #set :domain, 'root@112.124.57.28'
 set :domain, 'zhangw@localhost'
 #set :deploy_to, '/alidata1/xiyou/apps/toyouface'
-set :deploy_to, '/tmp/zhangw'
+set :deploy_to, '/home/zhangw/ttt'
 #set :app_path,   "#{deploy_to}/#{current_path}"
 set :repository, 'git@github.com:zwwz22/Test_gem.git'
 set :branch, 'master'
@@ -41,7 +41,7 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   #invoke :'rvm:use[ruby-1.9.3-p448@default]'
-  invoke :'rvm:use[ruby 2.1.0p0@default]'
+  invoke :'rvm:use[ruby-2.1.0@default]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
