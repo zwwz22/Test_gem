@@ -38,7 +38,7 @@
                     <%= f.label '记住我' %>
                 <% end -%>
               </div>
-              <%= f.submit "提交" ,:class => 'ui blue submit button' %>
+              <%= f.submit "提交" ,:class => 'ui blue submit button',:id => 'sub' %>
           <% end %>
         </div>
 
@@ -47,10 +47,16 @@
   </div>
   <img src="<%= image_path '333.jpg' %>" style="position: absolute;top: 0;left:0;width:auto"></div>
 <script type="text/javascript">
+    document.onkeydown = function(e){
+        if(!e) e = window.event;//火狐中是 window.event
+        if((e.keyCode || e.which) == 13){
+            document.getElementById("sub").click();
+        }
+    };
+
   $(function(){
 
       $('#new_user').addClass('ui transition hidden').transition('fade up');
-
       $('.ui.form')
               .form(
               {
