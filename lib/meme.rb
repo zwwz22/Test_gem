@@ -21,6 +21,7 @@ class Meme
   private
   def get_responds(xml,api_key,api_secret)
     signature = build_signature xml,api_key,api_secret
+    p signature.length
     options = {
         :body => {
             :open_id   => xml['FromUserName'],

@@ -1,4 +1,12 @@
+require 'api/project'
+require 'api/api'
+
 TestGem::Application.routes.draw do
+
+  #加载api
+  mount Project::Api => '/'
+  mount Api::Api => '/'
+
   get "applications/index"
 
   get "applications/create"
@@ -18,4 +26,7 @@ TestGem::Application.routes.draw do
   scope 'admin' do
     resources :homes
   end
+
+
+  resource :user, :only => [:new]
 end
