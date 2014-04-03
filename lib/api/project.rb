@@ -27,5 +27,11 @@ module Project
     get '/aa' do
       {:s => User.all,:b =>get_na,:c => get_bb}
     end
+
+    namespace :bb do
+      get '/cc' do
+        {'a' => 'dasdasdasdas'}
+      end
+    end
   end
 end

@@ -1,4 +1,6 @@
-
+<style>
+  .ui-helper-hidden-accessible { display:none; }
+</style>
 <table class="ui green table segment">
   <tr>
     <th>name</th>
@@ -14,7 +16,9 @@
   </tr>
   <% end %>
 </table>
-<%= collection_select(:user,:a,User.all,:id,:name,{},{:class => '.ui.selection.dropdown'})%>
+<input type="text" data-autocomplete="users/autocomplete_user_name" multiple="true">
+
+<%= collection_select(:user,:a,User.all,:id,:name,{},{:class => 'ui selection dropdown'})%>
 <div class="ui selection dropdown">
   <input type="hidden" name="user[a]">
   <div class="text">姓名</div>
@@ -33,6 +37,7 @@
 <div class="column"><i class="archive icon large red"></i>Save</div>
 
 <i class=" large circular inverted teal users icon"></i>
+
 
 <div class="ui  vertical menu">
   <a class="active item">
@@ -104,3 +109,4 @@
      $('.ui.sidebar').sidebar();
  })
 </script>
+

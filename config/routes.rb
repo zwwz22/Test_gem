@@ -21,7 +21,9 @@ TestGem::Application.routes.draw do
   }
   resources :homes
 
-  resources :users
+  resources :users do
+    get :autocomplete_user_name, :on => :collection
+  end
 
   scope 'admin' do
     resources :homes

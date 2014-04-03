@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require semantic
+ *= require test
  *= require_tree .
  */

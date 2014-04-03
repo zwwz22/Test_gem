@@ -13,4 +13,6 @@
 //= require jquery
 //= require semantic
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require autocomplete-rails
 //= require_tree .

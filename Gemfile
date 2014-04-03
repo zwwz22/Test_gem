@@ -46,6 +46,6 @@ gem 'to_xls'
 gem 'grape'
 gem 'nokogiri'
 gem 'httparty'
+gem 'jquery-ui-rails'
 
-
-gem 'grape'
+gem 'rails3-jquery-autocomplete'

@@ -1,5 +1,6 @@
 require 'openssl'
 class UsersController < ApplicationController
+  autocomplete :user, :name,:full => true
 
   def index
     @users = User.order_desc.all
