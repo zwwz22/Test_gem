@@ -18,6 +18,7 @@
 </table>
 <input type="text" data-autocomplete="users/autocomplete_user_name" multiple="true">
 
+autocomplete: <input type="text" id="auto" name="auto"/>
 <%= collection_select(:user,:a,User.all,:id,:name,{},{:class => 'ui selection dropdown'})%>
 <div class="ui selection dropdown">
   <input type="hidden" name="user[a]">
@@ -30,6 +31,17 @@
   </div>
 </div>
 <%= select('user','b',User.all.collect{|u|[u.name,u.id]}) %>
+
+用户名：<select name="user1" id="user1">
+  <option value="0">test</option>
+  <% @user_arr.each do |u| %>
+    <option value="<%=u.id%>"><%=u.name%></option>
+  <% end %>
+</select>
+<select name="user2" id="user2">
+
+</select>
+
 
 <div class="red button" style="margin-left: 300px">2222</div>
 
@@ -107,6 +119,62 @@
 <script type="text/javascript">
  $('#bbb').click(function(){
      $('.ui.sidebar').sidebar();
- })
+ });
+
+ $(function() {
+
+   $('#user1').change(function(){
+     user_id = $(this).val();
+     $("#user2 option").remove();
+     $.ajax({
+       url:"<%= get_arr_users_url%>",
+       data:{user_id:user_id},
+       type:'post',
+       dataType:'json',
+       success:function(data){
+         if(data!=null && data != ''){
+           $.each(data,function(k,v){
+             $('#user2').append("<option value="+ v.id+">"+ v.name+"</option>")
+           })
+         }
+       }
+     })
+
+
+   })
+
+    var data = "Core Selectors Attributes Traversing Manipulation CSS Events Effects Ajax Utilities".split(" ");
+   $("#auto").autocomplete({
+     autoFocus: true,
+     source: function(request, response) {
+       var term = request.term, //request.term为输入的字符串
+           ix = term.indexOf("@"),
+           name = term, // 用户名
+           host = "", // 域名
+           result = []; // 结果
+       result.push(term);
+// result.push({ label: term, value: term }); // json格式
+       if (ix > -1) {
+         name = term.slice(0, ix);
+         host = term.slice(ix + 1);
+       }
+       if (name) {
+         var findedHosts = (host ? $.grep(hosts, function(value) {
+               return value.indexOf(host) > -1;
+             }) : data),
+             findedResults = $.map(findedHosts, function(value) {
+               return name + "@" + value; //返回字符串格式
+// return { label: name + " @ " + value, value: name + "@" + value }; // json格式
+             });
+         result = result.concat($.makeArray(findedResults));
+       }
+       response(result);//呈现结果
+     }
+
+
+   });
+
+
+ });
 </script>
 

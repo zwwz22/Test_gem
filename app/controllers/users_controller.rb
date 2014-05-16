@@ -16,6 +16,9 @@ class UsersController < ApplicationController
         Content      { cdata('789') }
       end
     end
+    @user_name = User.first.name
+    @user_arr = User.where(:name => @user_name)
+
     respond_to do |format|
       format.html
       format.xls {
@@ -47,6 +50,12 @@ class UsersController < ApplicationController
 
   def create
 
+  end
+
+  def get_arr
+    user_id = params[:user_id]
+    user = User.where(:id => user_id)
+    render :json => user.to_json
   end
 
   def edit

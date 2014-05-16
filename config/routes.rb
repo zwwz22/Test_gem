@@ -23,6 +23,7 @@ TestGem::Application.routes.draw do
 
   resources :users do
     get :autocomplete_user_name, :on => :collection
+    post :get_arr,:on => :collection
   end
 
   scope 'admin' do
