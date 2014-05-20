@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def index
     @users = User.order_desc.all
 
+    UserMailer.welcome_email.deliver
+
     a = YAML.load(File.read("#{Rails.root}/config/test.yml"))
     p a
     @xml = Nokogiri::XML::Builder.new do

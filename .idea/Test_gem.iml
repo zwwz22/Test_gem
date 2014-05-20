@@ -133,7 +133,9 @@
       <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/lib/meme.rb" />
       <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
       <RunnerSettings RunnerId="RubyCover" />
+      <RunnerSettings RunnerId="RubyRunner" />
       <ConfigurationWrapper RunnerId="RubyCover" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
       <method />
     </configuration>
   </component>
