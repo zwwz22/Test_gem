@@ -11,7 +11,7 @@
 /lib/assets/barcode.png
 
 /db/schema.rb
-/config/initializes/mail.rb
+/config/initializers/mail.rb
 
 .idea
 .DS_Store
