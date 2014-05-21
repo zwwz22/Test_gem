@@ -46,6 +46,9 @@ gem 'to_xls'
 gem 'grape'
 gem 'nokogiri'
 gem 'httparty'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 
-gem 'rails3-jquery-autocomplete'
+#gem 'rails3-jquery-autocomplete'
+
+# Migrate comments
+gem 'migration_comments'
