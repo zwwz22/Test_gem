@@ -12,9 +12,9 @@
   <div class="ui divider" style="margin-top: 44px"></div>
   <i class="circular heart icon link" data-content="这是反色的弹出框。" data-variation="inverted" ></i>
 
-  <a href="<%= url_for users_path(:format => :xls) %>">xls</a>
+  <a href="<%= url_for rou_users_path(:format => :xls) %>">xls</a>
 
-  <%= link_to 'out',destroy_user_session_path ,:method => :delete %>
+  <%= link_to 'out',destroy_rou_user_session_path ,:method => :delete %>
   <div class="ui labeled icon button">
     <i class="pause icon"></i>
     暂停

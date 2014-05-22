@@ -1,5 +1,4 @@
-class UsersController < ApplicationController
-  autocomplete :user, :name,:full => true
+class Rou::UsersController < Rou::ApplicationController
 
   def index
     @users = User.order_desc.all

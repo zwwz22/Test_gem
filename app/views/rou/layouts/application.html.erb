@@ -21,25 +21,15 @@
     <i class="inverted circular red awesome  book icon"></i>
   </a>
   <div class="item">
-    <a href="<%= rou_users_path%>">
+    <a href="<%= rou_homes_path %>">
       <b>主页</b>
     </a>
     <div class="menu">
-
-      <a class="item" href="/introduction/variations.html">变化</a>
-
-      <a class="item" href="/introduction/definitions.html">定义</a>
-
       <a class="item" href="/introduction.html">有什么新奇的玩意儿？</a>
-
-      <a class="item" href="/introduction/types.html">样式（种类）</a>
-
-      <a class="item" href="/introduction/overview.html">概述</a>
-
     </div>
   </div>
   <div class="item">
-    <a href="/element.html"><b>基础组件</b></a>
+    <a href="<%= rou_articles_path %>"><b>文章</b></a>
     <div class="menu">
 
       <a class="item" href="/modules/reveal.html">Reveal</a>
@@ -49,23 +39,15 @@
       <a class="item" href="/elements/loader.html">加载控件</a>
 
       <a class="item" href="/elements/image.html">图像控件</a>
+    </div>
+  </div>
 
-      <a class="item" href="/elements/icon.html">图标</a>
-
-      <a class="item" href="/elements/button.html">按扭</a>
-
-      <a class="item" href="/elements/label.html">标签</a>
-
-      <a class="item" href="/elements/header.html">标题头控件</a>
-
-      <a class="item" href="/elements/step.html">步骤控件</a>
-
-      <a class="item" href="/elements/segment.html">片断控件</a>
-
-      <a class="item" href="/elements/input.html">输入控件</a>
-
-      <a class="item" href="/elements/progress.html">进度条控件</a>
-
+  <div class="item">
+    <a href="<%= rou_categories_path %>"><b>分类目录</b></a>
+    <div class="menu">
+      <% Category.pluck(:name).each do |name| %>
+      <a class="item" href="##"><%= name %></a>
+      <% end %>
     </div>
   </div>
 </div>

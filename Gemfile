@@ -52,3 +52,9 @@ gem 'httparty'
 
 # Migrate comments
 gem 'migration_comments'
+
+# Paginate
+gem 'will_paginate', '3.0.4'
+
+# Editor
+gem 'rails_kindeditor', '~> 0.3.20'

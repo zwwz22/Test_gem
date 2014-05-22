@@ -1,0 +1,2 @@
+module Rou::ArticlesHelper
+end

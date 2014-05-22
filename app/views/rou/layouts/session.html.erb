@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Abc</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+      body {
+          background:url("<%= image_path('111.png')%>")  ;
+      }
+  </style>
+</head>
+<body>
+
+</div>
+<div >
+  <%= yield %>
+</div>
+<% if flash.present? %>
+    <script>
+        <% flash.each do |name, msg| %>
+        <% next if msg.to_s == 'true' %>
+        show<%= if name.to_s == 'notice'; 'Success' else 'Error' end %>("<%= msg %>");
+        <% end %>
+    </script>
+<% end %>
+
+<script type="text/javascript">
+    //    $('.sidebar').sidebar('toggle');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+
+<span><%= @web_title %></span>
+<div class="ui google plus button" style="float: right;font-size: 14px;height: 35px" >
+   <a href="<%= url_for new_rou_category_path %>" style="color: white">新增</a>
+</div>
+
+<div class="ui divider" style="margin-top: 24px"></div>
+<table class="ui table segment">
+  <thead>
+  <tr>
+    <th>名称</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= category.created_at.strftime('%Y-%m-%d')%></td>
+    <td>
+      <a href="<%= edit_rou_category_path(category) %>"><i class="edit icon  black" data-content="编辑" data-variation="inverted"></i></a>
+      <%= link_to rou_category_path(category),:method => :delete,:confirm =>'确认删除?' do %>
+        <i class="remove icon black" data-content="删除" data-variation="inverted"></i>
+      <% end %>
+    </td>
+  </tr>
+ <% end %>
+ </tbody>
+
+</table>
+<%= will_paginate @categories%>
+
+
+<script>
+$('.icon').popup();
+</script>
+

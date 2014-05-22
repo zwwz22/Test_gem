@@ -1,0 +1,40 @@
+<span><%= @web_title %></span>
+<div class="ui google plus button " style="float: right;font-size: 14px;height: 35px" >
+   <%= link_to '新增',new_rou_article_path,:style => 'color:white' %>
+</div>
+
+
+<div class="ui divider" style="margin-top: 24px"></div>
+<table class="ui table segment">
+  <thead>
+  <tr>
+    <th>标题</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.created_at.strftime('%Y-%m-%d')%></td>
+      <td>
+        <%= link_to rou_article_path(article) do  %>
+          <i class="search icon black" data-content="详情" data-variation="inverted"></i>
+        <% end %>
+        <a href="<%= edit_rou_article_path(article) %>"><i class="edit icon  black" data-content="编辑" data-variation="inverted"></i></a>
+        <%= link_to rou_article_path(article),:method => :delete,:confirm => '确认删除?' do %>
+          <i class="remove icon black" data-content="删除" data-variation="inverted"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+
+</table>
+<%= will_paginate @articles%>
+
+
+<script>
+  $('.icon').popup();
+</script>

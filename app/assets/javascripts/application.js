@@ -13,4 +13,5 @@
 //= require jquery
 //= require semantic
 //= require jquery_ujs
+//= require kindeditor
 //= require_tree .

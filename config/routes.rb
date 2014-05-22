@@ -7,29 +7,29 @@ TestGem::Application.routes.draw do
   mount Project::Api => '/'
   mount Api::Api => '/'
 
-  get "applications/index"
+  root :to => 'welcome#index'
 
-  get "applications/create"
-
-  use_doorkeeper do
-    controllers :applications => 'oauth/applications'
-  end
-
-  root :to => 'homes#index'
-  devise_for :users ,:controllers => {:sessions => :sessions,
-                                      :registrations => :registrations
-  }
-  resources :homes
-
-  resources :users do
-    get :autocomplete_user_name, :on => :collection
-    post :get_arr,:on => :collection
-  end
 
   scope 'admin' do
     resources :homes
   end
 
 
-  resource :user, :only => [:new]
+
+  namespace 'rou' do
+    devise_for :users ,:controllers => {:sessions => :sessions,
+                                        :registrations => :registrations
+    }
+
+    root :to => 'homes#index'
+    resources :homes
+
+    resources :users do
+      post :get_arr,:on => :collection
+    end
+
+    resources :articles
+
+    resources :categories
+  end
 end
