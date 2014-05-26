@@ -4,6 +4,7 @@ class HomesController < ApplicationController
   def index
     a = request.user_agent.include?('chrome')
     logger.info a
+    @articles = Article.all
   end
 
   def show

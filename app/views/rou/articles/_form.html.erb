@@ -9,6 +9,29 @@
         </div>
       </div>
     </div>
+
+    <div class="field">
+      <label>标题</label>
+      <div class="ui selection dropdown">
+        <input type="hidden" name="article[category_id]">
+        <div class="text"><%= @article.category_id.present? ? "#{@article.category.name}":'类别' %></div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+         <% Category.all.each do |c| %>
+          <div class="item " data-value="<%= c.id %>"><%= c.name %></div>
+           <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>文章说明</label>
+      <div class="ui left labeled  textarea">
+        <%= f.text_area :introduce%>
+        <div class="ui corner label">
+          <i class="icon asterisk"></i>
+        </div>
+      </div>
+    </div>
     <div class="field">
       <label>内容</label>
       <%= f.kindeditor :content,:window_onload => true %>

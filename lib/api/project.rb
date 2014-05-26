@@ -48,7 +48,7 @@ module Project
       for_sign_array = Array.new
       for_sign_array << '1398842216'
       for_sign_array << '1398842216'
-      for_sign_array << 'T24KvUpxXs7f6zkc'
+      for_sign_array << '6TeEDG'
       signed = Digest::SHA1.hexdigest(for_sign_array.sort!.join)
       str = "signature=#{signed}&timestamp=#{1398842216}&nonce=#{1398842216}"
       p str
@@ -58,7 +58,7 @@ module Project
           FromUserName { cdata('ouOxsuOQ6wu7gNrjIoKLLp0PMQgo') }
           CreateTime   1398842216
           MsgType      { cdata('text')}
-          Content      { cdata("aaaa")}
+          Content      { cdata("时间")}
           #PicUrl       { cdata('http://mmbiz.qpic.cn/mmbiz/EuibFBvAicrDmTkOF4SPBucQyg5pB2VF1fKG321D5koJeOsnupIoCRiaa1g1gDicERSnks5Raju3w1FbJfEmaE41Yg/0')}
           MediaId      {cdata('l4GAQLiWTVm29VfyN_OSUoj213h8_0homvke7_kyZ1k')}
           MsgId        {cdata('5965668295223324543')}
@@ -69,7 +69,7 @@ module Project
           :body =>  @xml.to_xml,
           :headers => {'Content-type' => 'text/xml'}
       }
-      responds = HTTParty.post("http://fp.memeing.cn/api/wechat/2?#{str}",options)
+      responds = HTTParty.post("http://wxapi.v5kf.com/public/weixin?site_id=40685&#{str}",options)
       {:s => User.all,:b =>responds,:c => responds.body}
     end
 

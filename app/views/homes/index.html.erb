@@ -4,27 +4,61 @@
       alert("<%= notice %>")
     </script>
   <% end %>
-  <div class="ui google plus button " style="float: right;font-size: 14px;height: 35px" >
-    新增
+
+
+
+  <div class="column" style="width: 70%;overflow: hidden;font-size: 14px">
+    <div class="ui raised segment">
+      <% @articles.each do |article| %>
+        <div class="ui teal ribbon label"><a href="<%= article_path(:id =>article.id) %>" style="">《<%=article.title%></a> </div>
+        <br/>
+        <%=  raw article.introduce%>
+        <br/>
+        <a href="<%= article_path(:id =>article.id) %>">=>&nbsp继续阅读</a>
+        <div style="height: 28px"><%= image_tag 'fenggexian.png',:style => 'width:100%' %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="column" style="width: 28%">
+    <div class="ui secondary vertical pointing menu">
+      <a class="item active">
+        <i class="home icon"></i> 主页
+      </a>
+      <a class="item">
+        <i class="mail icon"></i> 消息
+      </a>
+      <a class="item">
+        <i class="user icon"></i> 朋友们
+      </a>
+    </div>
+    <div class="ui secondary vertical pointing menu">
+      <a class="item active">
+        <i class="home icon"></i> 近期文章
+      </a>
+      <% @articles[0..1].each do |article|%>
+      <a class="item" style="font-size: 14px" href="<%= article_path(:id => article.id) %>">
+         <%= article.title %>
+      </a>
+      <% end %>
+    </div>
+    <div class="ui secondary vertical pointing menu">
+      <a class="item active">
+        <i class="home icon"></i> 文章分类
+      </a>
+      <% categories.each do |category|%>
+        <a class="item" style="font-size: 14px" href="<%= article_path(:category_id => category.id) %>">
+          <%= category.name %>(<span style="color: peachpuff"><%= Article.where(:category_id => category.id).count%></span>)
+        </a>
+      <% end %>
+    </div>
   </div>
 
 
-  <div class="ui divider" style="margin-top: 44px"></div>
-  <i class="circular heart icon link" data-content="这是反色的弹出框。" data-variation="inverted" ></i>
 
-  <a href="<%= url_for users_path(:format => :xls) %>">xls</a>
 
-  <%= link_to 'out',destroy_user_session_path ,:method => :delete %>
-  <div class="ui labeled icon button">
-    <i class="pause icon"></i>
-    暂停
-  </div>
-  <div class="ui right labeled icon button">
-    <i class="right arrow icon"></i>
-    下一曲
-  </div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
   $(function(){
     $('.circular.heart.icon.link').popup().click(function(){
       $('.vertical.sidebar').first().sidebar('toggle');

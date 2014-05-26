@@ -7,12 +7,11 @@ TestGem::Application.routes.draw do
   mount Project::Api => '/'
   mount Api::Api => '/'
 
-  root :to => 'welcome#index'
+  root :to => 'homes#index'
 
+  resources :homes
 
-  scope 'admin' do
-    resources :homes
-  end
+  resource :article
 
 
 
