@@ -14,3 +14,5 @@ timeout 30
 #listen "/tmp/unicorn.toyouface.sock"
 #worker_processes 2
 #timeout 30
+
+#bundle exec unicorn -E production -Dc config/unicorn.rb
