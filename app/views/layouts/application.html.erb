@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Abc</title>
+  <title>狂奔的跳跳鱼</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,6 +21,7 @@
       width: 880px;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: 20px;
       padding-bottom: 20px;
       opacity: 0.9;
     }
@@ -28,6 +29,10 @@
       position: absolute;
       right: 10px;
       bottom: 10px;
+    }
+    .top{
+      padding: 10px;
+      position: relative;
     }
 
 
@@ -43,7 +48,7 @@
 <div class="ui fixed transparent inverted main menu">
   <div class="container">
     <div class="title item">
-      <b>狂奔的跳跳鱼</b>
+      <a href="<%= root_url %>"><b>狂奔的跳跳鱼</b></a>
     </div>
 
     <div class="right menu">
@@ -59,7 +64,7 @@
 </div>
 <div class="main container" >
   <div class="blog_content" style="display: none">
-    <div class="top" style="padding: 10px;position: relative" >
+    <div class="top"  >
 
       <div class="ui circular rotate reveal image" >
         <%= image_tag 'dog.jpg',:class => 'visible content'  %>
@@ -106,7 +111,7 @@
 
   $('.icon.sidebar').first().sidebar('toggle');
   $(function(){
-    $('.blog_content').fadeTo(1000,1);
+    $('.blog_content').fadeTo(2000,0.87);
 
   })
 </script>

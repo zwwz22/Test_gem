@@ -11,7 +11,7 @@ TestGem::Application.routes.draw do
 
   resources :homes
 
-  resource :article
+  resources :articles
 
 
 
@@ -25,6 +25,9 @@ TestGem::Application.routes.draw do
 
     resources :users do
       post :get_arr,:on => :collection
+      get :login, :on => :collection
+      post :login, :on => :collection
+      get :log_out, :on => :collection
     end
 
     resources :articles

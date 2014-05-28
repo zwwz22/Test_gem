@@ -4,7 +4,7 @@ class HomesController < ApplicationController
   def index
     a = request.user_agent.include?('chrome')
     logger.info a
-    @articles = Article.all
+    @articles = Article.order('created_at desc').limit 6
   end
 
   def show

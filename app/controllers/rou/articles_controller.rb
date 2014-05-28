@@ -1,5 +1,6 @@
 class Rou::ArticlesController < Rou::ApplicationController
   before_filter :find_article,:only => [:edit,:update,:destroy,:show]
+  before_filter :current_user_info
   def index
     @web_title = '文章列表'
     @articles =  Article

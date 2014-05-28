@@ -14,7 +14,9 @@
         <br/>
         <%=  raw article.introduce%>
         <br/>
-        <a href="<%= article_path(:id =>article.id) %>">=>&nbsp继续阅读</a>
+        <br/>
+        <a href="<%= article_path(:id =>article.id) %>" class="tiny ui active button">继续阅读</a>
+        <span style="float: right" class="ui green label"><%= article.created_at.strftime('%Y年%m月%d日') %></span>
         <div style="height: 28px"><%= image_tag 'fenggexian.png',:style => 'width:100%' %></div>
       <% end %>
     </div>
@@ -36,7 +38,7 @@
       <a class="item active">
         <i class="home icon"></i> 近期文章
       </a>
-      <% @articles[0..1].each do |article|%>
+      <% recent_articles.each do |article|%>
       <a class="item" style="font-size: 14px" href="<%= article_path(:id => article.id) %>">
          <%= article.title %>
       </a>
@@ -46,8 +48,11 @@
       <a class="item active">
         <i class="home icon"></i> 文章分类
       </a>
+      <a class="item" style="font-size: 14px" href="<%= articles_path %>">
+        所有文章(<span style="color: peachpuff"><%= Article.count%></span>)
+      </a>
       <% categories.each do |category|%>
-        <a class="item" style="font-size: 14px" href="<%= article_path(:category_id => category.id) %>">
+        <a class="item" style="font-size: 14px" href="<%= articles_path(:category_id => category.id) %>">
           <%= category.name %>(<span style="color: peachpuff"><%= Article.where(:category_id => category.id).count%></span>)
         </a>
       <% end %>

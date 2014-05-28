@@ -1,5 +1,5 @@
 class Rou::CategoriesController < Rou::ApplicationController
-
+  before_filter :current_user_info
   def index
     @web_title = '分类目录'
     @categories= Category.paginate(:page => params[:page], :per_page => 20)
