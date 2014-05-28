@@ -20,7 +20,7 @@ TestGem::Application.routes.draw do
                                         :registrations => :registrations
     }
 
-    root :to => 'homes#index'
+    root :to => 'articles#index'
     resources :homes
 
     resources :users do

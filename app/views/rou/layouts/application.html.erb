@@ -1,96 +1,78 @@
+
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Abc</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <style type="text/css">
-    div.main.container {
-        background:url("<%= image_path('bg.jpg')%>") repeat  ;
-    }
-  </style>
-  <%= yield :css %>
-</head>
+<html lang="en">
+<%= render 'rou/layouts/head' %>
+
 <body>
+<%= render 'rou/layouts/top' %>
+<div class="main-container" id="main-container">
+<script type="text/javascript">
+  try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+</script>
+
+<div class="main-container-inner">
+<a class="menu-toggler" id="menu-toggler" href="#">
+  <span class="menu-text"></span>
+</a>
 
 <!-- left -->
-<div class="ui large vertical inverted labeled icon sidebar menu " id="menu">
+<%= render 'rou/layouts/left' %>
 
-  <a class="item" href="/build/semantic.zip">
-    <i class="inverted circular red awesome  book icon"></i>
-  </a>
-  <div class="item">
-    <a href="<%= rou_homes_path %>">
-      <b>主页</b>
-    </a>
-    <div class="menu">
-      <a class="item" href="/introduction.html">有什么新奇的玩意儿？</a>
-    </div>
-  </div>
-  <div class="item">
-    <a href="<%= rou_articles_path %>"><b>文章</b></a>
-    <div class="menu">
+<!--main-->
+<%= yield %>
+  <!-- /.main-content -->
 
-      <a class="item" href="/modules/reveal.html">Reveal</a>
+</div><!-- /.main-container-inner -->
 
-      <a class="item" href="/elements/divider.html">分隔条</a>
-
-      <a class="item" href="/elements/loader.html">加载控件</a>
-
-      <a class="item" href="/elements/image.html">图像控件</a>
-    </div>
-  </div>
-
-  <div class="item">
-    <a href="<%= rou_categories_path %>"><b>分类目录</b></a>
-    <div class="menu">
-      <% Category.pluck(:name).each do |name| %>
-      <a class="item" href="##"><%= name %></a>
-      <% end %>
-    </div>
-  </div>
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+  <i class="icon-double-angle-up icon-only bigger-110"></i>
+</a>
 </div>
+<!-- /.main-container -->
 
-<!-- top  -->
-<div class="ui fixed transparent inverted main menu">
-  <div class="container">
-    <a class="launch item"><i class="icon list layout"></i> 内容</a>
-    <div class="title item">
-      <b>UI Module:</b> 边栏
-    </div>
+<!-- basic scripts -->
 
-    <div class="right menu">
-
-      <a class="popup icon github item" title="查看Semantic UI在Github的项目信息" href="https://github.com/quirkyinc/semantic">
-        <i class="icon github"></i>
-      </a>
-      <div class="title item">
-        交流群：277950553
-      </div>
-    </div>
-  </div>
-</div>
-<div class="main container" >
-  <div class="ui stacked segment">
-  <%= yield %>
-   </div>
-</div>
-<% if flash.present? %>
-    <script>
-        <% flash.each do |name, msg| %>
-        <% next if msg.to_s == 'true' %>
-        show<%= if name.to_s == 'notice'; 'Success' else 'Error' end %>("<%= msg %>");
-        <% end %>
-    </script>
-<% end %>
+<!-- inline scripts related to this page -->
 
 <script type="text/javascript">
-//  $('.vertical.sidebar').first().click(function(){
-//    $(this).removeClass('active')
-//  });
+  jQuery(function($) {
 
-  $('.icon.sidebar').first().sidebar('toggle');
+    $('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
+      var color_class = $(this).find('option:selected').data('class');
+      var new_class = 'widget-header';
+      if(color_class != 'default')  new_class += ' header-color-'+color_class;
+      $(this).closest('.widget-header').attr('class', new_class);
+    });
+
+
+    // scrollables
+    $('.slim-scroll').each(function () {
+      var $this = $(this);
+      $this.slimScroll({
+        height: $this.data('height') || 100,
+        railVisible:true
+      });
+    });
+
+    /**$('.widget-box').on('ace.widget.settings' , function(e) {
+					e.preventDefault();
+				});*/
+
+
+
+      // Portlets (boxes)
+    $('.widget-container-span').sortable({
+      connectWith: '.widget-container-span',
+      items:'> .widget-box',
+      opacity:0.8,
+      revert:true,
+      forceHelperSize:true,
+      placeholder: 'widget-placeholder',
+      forcePlaceholderSize:true,
+      tolerance:'pointer'
+    });
+
+  });
 </script>
 
 </body>

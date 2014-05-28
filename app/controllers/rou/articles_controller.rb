@@ -2,7 +2,11 @@ class Rou::ArticlesController < Rou::ApplicationController
   before_filter :find_article,:only => [:edit,:update,:destroy,:show]
   def index
     @web_title = '文章列表'
-    @articles = Article.paginate(:page =>params[:page],:per_page => 20)
+    @articles =  Article
+    if params[:category_id].present?
+      @articles = @articles.where(:category_id => params[:category_id])
+    end
+    @articles = @articles.paginate(:page =>params[:page],:per_page => 4)
   end
 
   def new

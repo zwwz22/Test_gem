@@ -1,8 +1,53 @@
-<div class="ui google plus button" style="float: right;font-size: 14px;height: 35px" >
-  <a href="<%= url_for rou_articles_path %>" style="color: white">返回</a>
-</div>
+<div class="main-content">
+  <div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+      try {
+        ace.settings.check('breadcrumbs', 'fixed')
+      } catch (e) {
+      }
+    </script>
 
-<div class="ui divider" style="margin-top: 44px"></div>
-<%= render 'form' %>
+    <ul class="breadcrumb">
+      <li>
+        <i class="icon-home home-icon"></i>
+        <a href="<%= rou_root_url %>">Home</a>
+      </li>
+      <li class="active">Article</li>
+    </ul>
+    <!-- .breadcrumb -->
+
+    <!-- #nav-search -->
+  </div>
+
+  <div class="page-content">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+
+        <div class="row">
+          <div class="col-sm-12 widget-container-span">
+            <div class="widget-box">
+              <div class="widget-header widget-hea1der-small header-color-dark">
+                <h6><%= @web_title %></h6>
+                <div class="widget-toolbar">
+                  <%= link_to '新增', new_rou_article_path %>
+                </div>
+              </div>
+              <%= render 'form' %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-24"></div>
+
+  </div>
+  <!-- /.col -->
+</div><!-- /.row -->
+
+
 
 

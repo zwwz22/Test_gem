@@ -1,45 +1,77 @@
-<div class="ui form segment">
-  <%=form_for [:rou,@article] do |f|%>
-    <div class="field">
-      <label>标题</label>
-      <div class="ui left labeled  input">
-        <%= f.text_field :title,:placeholder => '文章标题' %>
-        <div class="ui corner label">
-          <i class="icon asterisk"></i>
-        </div>
-      </div>
-    </div>
+<div class="hr hr-24"></div>
+<%= form_for [:rou, @article], :html => {:class => 'form-horizontal'}, :role => 'form' do |f| %>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 标题 </label>
 
-    <div class="field">
-      <label>标题</label>
-      <div class="ui selection dropdown">
-        <input type="hidden" name="article[category_id]">
-        <div class="text"><%= @article.category_id.present? ? "#{@article.category.name}":'类别' %></div>
-        <i class="dropdown icon"></i>
-        <div class="menu">
-         <% Category.all.each do |c| %>
-          <div class="item " data-value="<%= c.id %>"><%= c.name %></div>
-           <% end %>
-        </div>
+    <div class="col-sm-9">
+      <%= f.text_field :title, :class => 'col-xs-10 col-sm-5' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-1">文章类别</label>
+
+    <div class="col-sm-9">
+      <div>
+        <%= f.select :category_id,Category.all.collect{|c|[c.name,c.id]},{},:class => 'width-80 chosen-select','data-placeholder'=>"Choose a Country..."%>
+
       </div>
     </div>
-    <div class="field">
-      <label>文章说明</label>
-      <div class="ui left labeled  textarea">
-        <%= f.text_area :introduce%>
-        <div class="ui corner label">
-          <i class="icon asterisk"></i>
-        </div>
-      </div>
+  </div>
+
+
+  <!--<div class="space-4"></div>-->
+
+  <!--<div class="form-group">-->
+  <!--<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> Password Field </label>-->
+
+  <!--<div class="col-sm-9">-->
+  <!--<input type="password" id="form-field-2" placeholder="Password" class="col-xs-10 col-sm-5">-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <div class="space-4"></div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-2">简介</label>
+
+    <div class="col-sm-9">
+      <%= f.text_area :introduce, :class => 'form-control', :rows => '10' %>
     </div>
-    <div class="field">
-      <label>内容</label>
-      <%= f.kindeditor :content,:window_onload => true %>
+  </div>
+
+  <div class="space-4"></div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 内容 </label>
+
+    <div class="col-sm-9">
+      <%= f.kindeditor :content, :window_onload => true %>
     </div>
-    <%= f.submit '提交',:class => 'ui blue submit button' %>
-    <div class="ui error message">
-      <div class="header">发生了错误</div>
+  </div>
+
+  <div class="clearfix form-actions">
+    <div class="col-md-offset-3 col-md-9">
+      <button class="btn btn-info sub" type="button">
+        <i class="icon-ok bigger-110"></i>
+        提交
+      </button>
+
+      &nbsp; &nbsp; &nbsp;
+      <button class="btn" type="reset">
+        <i class="icon-undo bigger-110"></i>
+        重置
+      </button>
     </div>
-  <% end %>
-</div>
-<%= javascript_include_tag 'kindeditor/kindeditor'  %>
+  </div>
+
+  <div class="hr hr-24"></div>
+
+<% end %>
+<%= javascript_include_tag 'kindeditor/kindeditor' %>
+<script>
+  $(function(){
+    $(".chosen-select").chosen();
+  });
+    $('.sub').eq(0).click(function(){
+      $('.form-horizontal').submit();
+    })
+</script>
