@@ -1,7 +1,7 @@
-working_directory "/home/zhangw/ttt/current"
-pid "/home/zhangw/ttt" + "/tmp/pids/unicorn.pid"
-stderr_path "/home/zhangw/ttt/current" + "/log/unicorn.log"
-stdout_path "/home/zhangw/ttt/current" + "/log/unicorn.log"
+working_directory "/home/zhangw/Test_gem"
+pid "/home/zhangw/Test_gem" + "/tmp/pids/unicorn.pid"
+stderr_path "/home/zhangw/Test_gem" + "/log/unicorn.log"
+stdout_path "/home/zhangw/Test_gem" + "/log/unicorn.log"
 
 listen "/tmp/unicorn.sock"
 worker_processes 2
