@@ -44,7 +44,7 @@
     <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 内容 </label>
 
     <div class="col-sm-9">
-      <%= f.kindeditor :content, :window_onload => true %>
+      <%= f.kindeditor :content, :window_onload => true,:editor_id => 'my_editor' %>
     </div>
   </div>
 
@@ -66,12 +66,14 @@
   <div class="hr hr-24"></div>
 
 <% end %>
-<%= javascript_include_tag 'kindeditor/kindeditor' %>
 <script>
   $(function(){
     $(".chosen-select").chosen();
   });
     $('.sub').eq(0).click(function(){
+      var text = my_editor.html();
+      $('#article_content').html(text);
       $('.form-horizontal').submit();
     })
 </script>
+<%= javascript_include_tag 'kindeditor/kindeditor' %>
