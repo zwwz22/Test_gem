@@ -1,14 +1,21 @@
-working_directory "/home/zhangw/Test_gem"
-pid "/home/zhangw/Test_gem" + "/tmp/pids/unicorn.pid"
-stderr_path "/home/zhangw/Test_gem" + "/log/unicorn.log"
-stdout_path "/home/zhangw/Test_gem" + "/log/unicorn.log"
+module Rails
+  class <<self
+    def root
+      File.expand_path(__FILE__).split('/')[0..-3].join('/')
+    end
+  end
+end
+working_directory "#{Rails.root}"
+pid "#{Rails.root}" + "/tmp/pids/unicorn.pid"
+stderr_path "#{Rails.root}" + "/log/unicorn.log"
+stdout_path "#{Rails.root}" + "/log/unicorn.log"
 
 listen "/tmp/unicorn.sock"
 worker_processes 2
 timeout 30
 #hot restart
 before_fork do |server, worker|
-  old_pid = Rails.root + '/tmp/pids/unicorn.pid.oldbin'
+  old_pid = "#{Rails.root}" + '/tmp/pids/unicorn.pid.oldbin'
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
