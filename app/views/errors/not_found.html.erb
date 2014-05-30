@@ -1,0 +1,72 @@
+
+<% if notice %>
+  <script type="text/javascript">
+    alert("<%= notice %>")
+  </script>
+<% end %>
+
+
+
+<div class="column" style="width: 70%;overflow: hidden;font-size: 14px">
+  <div class="ui raised segment" style="text-align: center;font-size: 36px">
+   <p >嗨，你都找的什么玩意啊~</p>
+    <a href="<%= homes_path %>"><%= image_tag 'xiaopang.jpg' %></a>
+    <a href="<%= homes_path %>"><p style="color: red">苦海无边,回头是岸~</p></a>
+  </div>
+</div>
+
+<div class="column" style="width: 28%">
+  <div class="ui secondary vertical pointing menu">
+    <a class="item active">
+      <i class="home icon"></i> 主页
+    </a>
+    <a class="item">
+      <i class="mail icon"></i> 消息
+    </a>
+    <a class="item">
+      <i class="user icon"></i> 朋友们
+    </a>
+  </div>
+  <div class="ui secondary vertical pointing menu">
+    <a class="item active">
+      <i class="home icon"></i> 近期文章
+    </a>
+    <% recent_articles.each do |article|%>
+      <a class="item" style="font-size: 14px" href="<%= article_path(:id => article.id) %>">
+        <%= article.title %>
+      </a>
+    <% end %>
+  </div>
+  <div class="ui secondary vertical pointing menu">
+    <a class="item active">
+      <i class="home icon"></i> 文章分类
+    </a>
+    <a class="item" style="font-size: 14px" href="<%= articles_path %>">
+      所有文章(<span style="color: peachpuff"><%= Article.count%></span>)
+    </a>
+    <% categories.each do |category|%>
+      <a class="item" style="font-size: 14px" href="<%= articles_path(:category_id => category.id) %>">
+        <%= category.name %>(<span style="color: peachpuff"><%= Article.where(:category_id => category.id).count%></span>)
+      </a>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+  $(function(){
+    $('.circular.heart.icon.link').popup().click(function(){
+      $('.vertical.sidebar').first().sidebar('toggle');
+    });
+  })
+</script>
+<style type="text/css">
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+</style>
