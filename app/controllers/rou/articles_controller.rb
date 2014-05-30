@@ -7,7 +7,7 @@ class Rou::ArticlesController < Rou::ApplicationController
     if params[:category_id].present?
       @articles = @articles.where(:category_id => params[:category_id])
     end
-    @articles = @articles.paginate(:page =>params[:page],:per_page => 4)
+    @articles = @articles.order('created_at desc').paginate(:page =>params[:page],:per_page => 4)
   end
 
   def new

@@ -3,13 +3,13 @@ class Rou::ApplicationController < ApplicationController
 
   def login?
     unless @current_user.present?
-      p remember_redirect_url
-      render login_rou_users_path,:layout => false
+      remember_redirect_url
+      redirect_to login_rou_users_path,:layout => false
     end
   end
 
   def remember_redirect_url
-    session[:url] = request.url
+    session[:url] = request.fullpath unless request.fullpath.include? '/rou/users/login'
   end
 
   def current_user_info
