@@ -1,6 +1,6 @@
 class Rou::ApplicationController < ApplicationController
  layout 'rou/layouts/application'
- helper :current_user
+ helper_method :current_user
 
   def login?
     unless @current_user.present?
