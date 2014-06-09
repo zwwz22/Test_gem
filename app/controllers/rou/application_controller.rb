@@ -18,6 +18,7 @@ class Rou::ApplicationController < ApplicationController
       @current_user = User.where(:id =>session[:user]).first
     end
     login?
+    @current_user
   end
 
  def current_user
