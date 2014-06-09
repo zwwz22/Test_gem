@@ -1,5 +1,6 @@
 class Rou::ApplicationController < ApplicationController
  layout 'rou/layouts/application'
+ helper :current_user
 
   def login?
     unless @current_user.present?
@@ -18,6 +19,10 @@ class Rou::ApplicationController < ApplicationController
     end
     login?
   end
+
+ def current_user
+   current_user_info
+ end
 
  if Rails.env.production?
    unless Rails.application.config.consider_all_requests_local

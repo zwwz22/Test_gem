@@ -18,7 +18,7 @@
     <%= image_tag 'tty.jpg',:class => 'nav-user-photo',:alt => 'tty' %>
 								<span class="user-info">
 									<small>Welcome,</small>
-									<%= @current_user.name %>
+									<%= current_user.try(:name) %>
 								</span>
 
     <i class="icon-caret-down"></i>
