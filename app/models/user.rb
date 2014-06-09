@@ -5,9 +5,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :password
   validates_length_of :password, :minimum => 6
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :name, :password, :password_confirmation,:remember_me
+  validates_confirmation_of :password
+  #devise :database_authenticatable, :registerable,
+  #       :recoverable, :rememberable, :trackable, :validatable
+  attr_accessible :name, :password, :password_confirmation
   has_many :focus_users ,:through => :relationships
   has_many :relationships ,:foreign_key => 'be_focus_user_id',:dependent => :destroy
   has_many :be_focus_users, :through => :reverse_relationships
@@ -28,8 +29,14 @@ class User < ActiveRecord::Base
     false
   end
 
-  def add_a
-    p '1111'
+  def self.find_user(name,password)
+    passwd = Digest::SHA1.hexdigest(password)
+    user = User.where(:name => name,:password => passwd)
+    if user.present?
+      @current_user = user.first
+    else
+      nil
+    end
   end
 
 

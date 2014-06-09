@@ -97,7 +97,7 @@
           Enter your email and to receive instructions
         </p>
 
-        <form>
+        <form method="post">
           <fieldset>
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -136,32 +136,32 @@
         <div class="space-6"></div>
         <p> Enter your details to begin: </p>
 
-        <form>
+        <%= form_for '',:url => rou_users_path,:html => {:method => 'post'} do |f|  %>
           <fieldset>
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="Email" />
+															<input type="email" name="email" class="form-control" placeholder="Email" />
 															<i class="icon-envelope"></i>
 														</span>
             </label>
 
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input type="text"  name='user[name]' class="form-control" placeholder="Username" />
 															<i class="icon-user"></i>
 														</span>
             </label>
 
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input type="password" name="user[password]" class="form-control" placeholder="Password" />
 															<i class="icon-lock"></i>
 														</span>
             </label>
 
             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Repeat password" />
+															<input type="password" name="user[password_confirmation]" class="form-control" placeholder="Repeat password" />
 															<i class="icon-retweet"></i>
 														</span>
             </label>
@@ -182,13 +182,13 @@
                 Reset
               </button>
 
-              <button type="button" class="width-65 pull-right btn btn-sm btn-success">
+              <button type="submit" class="width-65 pull-right btn btn-sm btn-success">
                 Register
                 <i class="icon-arrow-right icon-on-right"></i>
               </button>
             </div>
           </fieldset>
-        </form>
+        <% end %>
       </div>
 
       <div class="toolbar center">

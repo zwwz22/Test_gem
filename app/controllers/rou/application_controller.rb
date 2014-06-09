@@ -13,21 +13,21 @@ class Rou::ApplicationController < ApplicationController
   end
 
   def current_user_info
-    if session[:user].present? && User.where(:id =>session[:user]).present?
+    if session[:user].present?
       @current_user = User.where(:id =>session[:user]).first
     end
     login?
   end
 
- #if Rails.env.production?
- #  unless Rails.application.config.consider_all_requests_local
+ if Rails.env.production?
+   unless Rails.application.config.consider_all_requests_local
  rescue_from Exception, with: :render_404
  rescue_from ActionController::RoutingError, with: :render_404
  rescue_from ActionController::UnknownController, with: :render_404
  rescue_from ActionController::UnknownAction, with: :render_404
  rescue_from ActiveRecord::RecordNotFound, with: :render_404
- #end
- #end
+ end
+ end
 
  private
  def render_404(exception)

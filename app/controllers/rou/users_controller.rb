@@ -1,15 +1,13 @@
+require 'digest/sha1'
 class Rou::UsersController < Rou::ApplicationController
-  before_filter :current_user_info,:except =>[:login,:log_out]
+  before_filter :current_user_info,:except =>[:login,:log_out,:create]
 
   def login
     if request.post?
-      if params[:name] == 'admin' && params[:password] == 'kai7321'
-        session[:user] = 1
-        if session[:url].present?
-          redirect_to session[:url]
-        else
-          redirect_to rou_articles_path
-        end
+      user = User.find_user(params[:name],params[:password])
+      if user.present?
+        session[:user] = user.id
+        redirect_to  session[:url].present? ? session[:url]:rou_articles_path
       else
         session[:user] = nil
         render login_rou_users_path,:layout => false
@@ -21,13 +19,8 @@ class Rou::UsersController < Rou::ApplicationController
   end
 
   def log_out
-    p session[:url]
     session[:user] = nil
-    if session[:url].present?
-      redirect_to session[:url]
-    else
-      redirect_to rou_articles_path
-    end
+    redirect_to  session[:url].present? ? session[:url]:rou_articles_path
   end
 
   def index
@@ -45,8 +38,15 @@ class Rou::UsersController < Rou::ApplicationController
   end
 
   def create
-
-
+    params[:user][:password] = Digest::SHA1.hexdigest(params[:user][:password])
+    params[:user][:password_confirmation] = Digest::SHA1.hexdigest(params[:user][:password_confirmation])
+    @user = User.new params[:user]
+    if @user.save
+      session[:user] = @user.id
+      redirect_to rou_articles_path
+    else
+      render login_rou_users_path,:layout => false
+    end
 
   end
 
