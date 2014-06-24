@@ -57,9 +57,9 @@ module Project
           ToUserName   { cdata('gh_d43310b359d6') }
           FromUserName { cdata('ouOxsuOQ6wu7gNrjIoKLLp0PMQgo') }
           CreateTime   1398842216
-          MsgType      { cdata('text')}
-          Content      { cdata("时间")}
-          #PicUrl       { cdata('http://mmbiz.qpic.cn/mmbiz/EuibFBvAicrDmTkOF4SPBucQyg5pB2VF1fKG321D5koJeOsnupIoCRiaa1g1gDicERSnks5Raju3w1FbJfEmaE41Yg/0')}
+          MsgType      { cdata('image')}
+          #Content      { cdata("时间")}
+          PicUrl       { cdata('http://mmbiz.qpic.cn/mmbiz/EuibFBvAicrDmTkOF4SPBucQyg5pB2VF1fKG321D5koJeOsnupIoCRiaa1g1gDicERSnks5Raju3w1FbJfEmaE41Yg/0')}
           MediaId      {cdata('l4GAQLiWTVm29VfyN_OSUoj213h8_0homvke7_kyZ1k')}
           MsgId        {cdata('5965668295223324543')}
         end
@@ -69,7 +69,7 @@ module Project
           :body =>  @xml.to_xml,
           :headers => {'Content-type' => 'text/xml'}
       }
-      responds = HTTParty.post("http://wxapi.v5kf.com/public/weixin?site_id=40685&#{str}",options)
+      responds = HTTParty.post("http://192.168.1.131:3000/api/wechat/6?site_id=40685&#{str}",options)
       {:s => User.all,:b =>responds,:c => responds.body}
     end
 

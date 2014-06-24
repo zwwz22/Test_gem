@@ -14,7 +14,6 @@ TestGem::Application.routes.draw do
   resources :articles
 
 
-
   namespace 'rou' do
     devise_for :users ,:controllers => {:sessions => :sessions,
                                         :registrations => :registrations
