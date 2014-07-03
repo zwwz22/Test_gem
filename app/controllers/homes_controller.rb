@@ -2,8 +2,7 @@ class HomesController < ApplicationController
   #doorkeeper_for :all
 
   def index
-    a = request.user_agent.include?('chrome')
-    logger.info a
+    a = request.user_agent.include?('chrome') unless Rails.env == 'test'
     @articles = Article.order('created_at desc').limit 6
   end
 

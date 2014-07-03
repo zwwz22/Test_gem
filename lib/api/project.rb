@@ -34,7 +34,7 @@ module Project
                        "ToUserName"=>"gh_439ebcfb4df5",
                        "FromUserName"=>"ouOxsuOQ6wu7gNrjIoKLLp0PMQgo",
                        "CreateTime"=>"1398044948", "MsgType"=>"image",
-                       "PicUrl"=>"http://mmbiz.qpic.cn/mmbiz/EuibFBvAicrDmTkOF4SPBucQyg5pB2VF1fKG321D5koJeOsnupIoCRiaa1g1gDicERSnks5Raju3w1FbJfEmaE41Yg/0",
+                       "PicUrl"=>"http://pic.52mxp.com/site/girl2.png",
                        "MsgId"=>"5965668295223324543",
                        "MediaId"=>"l4GAQLiWTVm29VfyN_OSUoj213h8_0homvke7_kyZ1k"
                    },
@@ -48,7 +48,7 @@ module Project
       for_sign_array = Array.new
       for_sign_array << '1398842216'
       for_sign_array << '1398842216'
-      for_sign_array << '6TeEDG'
+      for_sign_array << 'mhia7IuEReSTsYHP'
       signed = Digest::SHA1.hexdigest(for_sign_array.sort!.join)
       str = "signature=#{signed}&timestamp=#{1398842216}&nonce=#{1398842216}"
       p str
@@ -59,7 +59,7 @@ module Project
           CreateTime   1398842216
           MsgType      { cdata('image')}
           #Content      { cdata("时间")}
-          PicUrl       { cdata('http://mmbiz.qpic.cn/mmbiz/EuibFBvAicrDmTkOF4SPBucQyg5pB2VF1fKG321D5koJeOsnupIoCRiaa1g1gDicERSnks5Raju3w1FbJfEmaE41Yg/0')}
+          PicUrl       { cdata('http://mmbiz.qpic.cn/mmbiz/rmanCyF4UZGnTwnSiaySibCwiaxhKsJo5fGQtVTCiaeomia8zuglfFfXxCWzq23auibxqPOMWibNVODDJUuy1qutaxMhw/0')}
           MediaId      {cdata('l4GAQLiWTVm29VfyN_OSUoj213h8_0homvke7_kyZ1k')}
           MsgId        {cdata('5965668295223324543')}
         end
@@ -69,7 +69,7 @@ module Project
           :body =>  @xml.to_xml,
           :headers => {'Content-type' => 'text/xml'}
       }
-      responds = HTTParty.post("http://192.168.1.131:3000/api/wechat/6?site_id=40685&#{str}",options)
+      responds = HTTParty.post("http://192.168.1.133:3000/api/wechat/6?#{str}",options)
       {:s => User.all,:b =>responds,:c => responds.body}
     end
 

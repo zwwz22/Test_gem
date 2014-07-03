@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
 
   def index
-    p request.url
     @articles = Article
     if params[:category_id].present?
       @articles = @articles.where(:category_id => params[:category_id])

@@ -58,3 +58,11 @@ gem 'will_paginate', '3.0.4'
 
 # Editor
 gem 'rails_kindeditor', '~> 0.3.20'
+
+#RSPEC
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem "capybara"
+  gem "quiet_assets", "~> 1.0.2"
+end

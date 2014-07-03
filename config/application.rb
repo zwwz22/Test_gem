@@ -60,5 +60,10 @@ module TestGem
     config.assets.version = '1.0'
 
     config.autoload_paths += %W(#{config.root}/lib/api)
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end
